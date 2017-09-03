@@ -1,0 +1,11 @@
+prefix=@prefix@
+exec_prefix=@exec_prefix@
+libdir=@libdir@
+includedir=@includedir@
+
+Name: libffitest
+URL: http://www.tbd.org
+Description: library to test foreign function interfaces
+Version: @pkgconfig_VERSION@
+Libs: -L${libdir} -lffitest -lm
+Cflags: -I${includedir}

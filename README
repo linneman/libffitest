@@ -1,0 +1,43 @@
+# Illustration of Pixie's Foreign Function Interface
+
+This simple library is designed for the illustration and test of foreign function
+interfaces, mainly the PyPy Clojure Clone [Pixie](https://github.com/pixie-lang/pixie).
+
+### Download, Build and Installation
+The download and build process is done with the following shell commands:
+
+    git clone git://github.com/linneman/libffitest.git
+    cd libffitest
+
+    autoreconf -i # generate configure script
+
+    ./configure
+    make
+    make install # as root
+
+Pay  attention to  the fact  that  the library  is per  default installed  under
+`/usr/local/lib` which is  not in the library path on  many linux distributions.
+Thus you will need to put `/usr/local/lib` to your library path e.g. by defining
+the enviroment variable
+
+    export LD_LIBRARY_PATH=/usr/local/lib.
+
+Alternatively,  you  can  edit  `/etc/ld.so.conf`  which  contains  the  default
+directories  searched.  Note  that  you  may  also  need  to  update  the  cache
+`/etc/ld.so.cache` by running ldconfig (as root, or with sudo).
+
+### Compile and Run the Test Applicaton in C
+
+    cd example
+    make
+    ./ffitestexample
+
+### Run the Test Application in Pixie
+
+    pixie example.pxi
+
+## Licence
+This implementation code stands under the terms of the
+[GNU LESSER GENERAL PUBLIC LICENSE, Version 2.1](http://www.gnu.org/licenses/old-licenses/lgpl-2.1).
+
+September 2017, Otto Linnemann

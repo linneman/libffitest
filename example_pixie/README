@@ -1,0 +1,9 @@
+Illustration of Pixie's Foreign Function Interface
+
+First compile and install libffitest. Then invoke the sample program with
+
+      pixie example.pxi
+
+or via the REPL.
+
+September 2017, OL

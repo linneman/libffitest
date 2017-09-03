@@ -1,0 +1,11 @@
+prefix=/usr/local
+exec_prefix=${prefix}
+libdir=${exec_prefix}/lib
+includedir=${prefix}/include
+
+Name: libffitest
+URL: http://www.tbd.org
+Description: library to test foreign function interfaces
+Version: 1.0.1
+Libs: -L${libdir} -lffitest -lm
+Cflags: -I${includedir}
