@@ -42,9 +42,22 @@
 (set_ffi_params ffitest par)
 (print_ffi ffitest)
 
+(defn cstr2str
+  ([pcstr] (cstr2str pcstr 10000))
+  ([pcstr maxlen]
+   (loop [s "" idx 0]
+     (let [c (ffi/unpack pcstr idx CUInt8)]
+       (if (and (not (= c 0)) (< idx maxlen))
+         (recur (str s (char c)) (inc idx))
+         s)))))
+
 (defn callback [p x]
   (println "*** invoked callback with: " x "! ***")
-  (inc x))
+  (let [p (ffi/cast p ffitest_params_t)]
+    (println "*** p->f: " (ffi/get p :f))
+    (println "*** p->s: " (cstr2str (ffi/get p :s)))
+    (inc x)))
+
 
 (set_ffi_callback ffitest (ffi/ffi-prep-callback ffi_cb_t callback))
 (invoke_cb ffitest 42)
